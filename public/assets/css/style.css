@@ -3,7 +3,6 @@
     height: 45vh;
 }
 body{
-    background-image: url(/public/assets/img/Mushroom.jpg);
     color: black;
     background-position: center;
     background-repeat: no-repeat;
@@ -22,14 +21,14 @@ body{
 .contents {
     width: 225px;
     border-radius: 4px;
-    opacity: 80%;
+    opacity: 75%;
     border: solid 1px white;
 }
 .sidebar{ 
     margin-right:10px;
     padding: 5px;
     border-radius: 4px;
-    opacity: 80%; 
+    opacity: 75%; 
     border: solid 1px white;
 }
 .sidebar p{

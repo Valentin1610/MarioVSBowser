@@ -9,7 +9,21 @@ require_once __DIR__ . '/Character.php';
 class Orc extends Character
 {
     private int $damage;
+    
+    /**
+     * Création de la méthode magique construct de la Orc
+     * @param int $rage
+     * @param int $health
+     */
+    public function __construct( int $rage, int $health)
+    {
+        parent::__construct($health, $rage);
+    }
 
+    public function __toString() : string
+    {
+        return 'L\'orc a une santé de ' . $this->getHealth() ;
+    }
     /**
      * Méthode retournant la valeur des dégâts à l'orc
      * @return int
@@ -22,27 +36,14 @@ class Orc extends Character
     /**
      * Méthode affectant la valeur des dégâts à l'orc
      * @param int $damage
-     * 
      */
     public function setDamage(int $damage)
     {
         $this->damage = $damage;
     }
 
-    
-
-    /**
-     * Création de la méthode magique construct de la Orc
-     * @param int $rage
-     * @param int $health
-     */
-    public function __construct( int $rage, int $health)
-    {
-        parent::__construct($health, $rage);
-    }
-
     public function attack()
     {
-        $this->damage = rand(600, 800);
+        $this->setDamage(rand(600, 800)) ;
     }
 }

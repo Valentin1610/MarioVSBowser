@@ -15,7 +15,9 @@ $orc = new Orc(0, 500);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Qui régnera sur le royaume Champignon entre Mario et Bowser ?">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="public/assets/img/Champi.webp">
     <link rel="stylesheet" href="public/assets/css/style.css">
     <title>Mario VS Bowser</title>
 </head>
@@ -46,34 +48,38 @@ $orc = new Orc(0, 500);
     </div>
 
     <div class="text-center mt-3">
-        Cliquer sur ce bouton pour lancer la musique -> <button id="playButton" name="audio" type="button">Play!</button>
+        Cliquer sur ce bouton pour lancer la musique -> <button id="playButton" name="audio" type="button">Play !</button>
         <audio id="music" src="/public/assets/audio/Boss.mp3"></audio>
     </div>
     <div class="container mt-4">
 
         <div class="sidebar bg-dark">
             <?php
-            while ($hero->getHealth() > 0) {
+            while ($hero->getHealth() > 0 && $orc->getHealth() > 0) {
                 $orc->attack();
                 $damage = $orc->getDamage();
                 $shield = $hero->getShieldValue();
                 $attack = $hero->attacked($damage);
                 $hurt = $damage - $shield;
                 $health = $hero->getHealth();
+                if ($hero->getHealth() < 0) {
+                    $health = 0;
+                }
             ?>
                 <p class="text-center text-white"><?= '
-        Bowser a attaqué Mario avec' . ' ' . $damage . ' ' . 'points de dégâts.' .  ' ' . 'Mario bloque son attaque grâce à son bouclier qui a pour valeur' . ' ' . $shield . ' ' . 'Mario a subi' . ' ' . $hurt . ' ' . 'de dégâts et il lui reste' . ' ' . $health . ' ' . 'points de vie.' . ' ' . 'et il a une rage de' . ' ' . $hero->getRage() . '<br>';
-                                                } ?>
+        Bowser a attaqué Mario avec' . ' ' . $orc->getDamage() . ' ' . 'points de dégâts.' .  ' ' . 'Mario bloque son attaque grâce à son bouclier qui a pour valeur' . ' ' . $shield . ' ' . 'Mario a subi' . ' ' . $hurt . ' ' . 'de dégâts et il lui reste' . ' ' . $health . ' ' . 'points de vie.' . ' ' . 'et il a une rage de' . ' ' . $hero->getRage() . '<br>';
+                                                    ?>
                 </p>
                 <?php
-                while ($hero->getRage() > 100) {
+                if ($hero->getRage() > 100 && $hero->getHealth() > 0) {
                     $hero->setRage(0);
-                    $orc->setHealth($orc->getHealth() - $hero->getWeaponDamage());
+                    $orc->setHealth($orc->getHealth() - $hero->getWeaponDamage()); ?>
+                    <p class="text-center text-white">
+                        <?= 'Mario contre attaque et déchaine sa rage avec une valeur de' . ' ' .  $hero->getWeaponDamage() . ' ' . 'points de dégâts à Bowser.'  .  'Il lui reste' . ' ' . $orc->getHealth() . ' ' . 'points de vie.';
+                        ?>
+                    </p><?php
+                    }
                 } ?>
-                <p class="text-center text-white">
-                    <?= 'Mario contre attaque et déchaine sa rage avec une valeur de' . ' ' .  $hero->getWeaponDamage() . ' ' . 'points de dégâts à Bowser.'  .  'Il lui reste' . ' ' . $orc->getHealth() . ' ' . 'points de vie.';
-                    ?>
-                </p>
         </div>
 
         <div class="contents bg-dark">
@@ -96,7 +102,7 @@ $orc = new Orc(0, 500);
     </div>
 
     <div class="text-center mt-4">
-        <img class="resultImg" src='<?= $victory?>'>
+        <img class="resultImg" src='<?= $victory ?>'>
     </div>
     <script src="/public/assets/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
