@@ -1,0 +1,37 @@
+.resultImg{
+    width: 70vh;
+    height: 45vh;
+}
+body{
+    background-image: url(/public/assets/img/Mushroom.jpg);
+    color: black;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#playButton{
+    color: white;
+    border-radius: 5px;
+    background-color: #F2CD09;
+}
+.container {
+    justify-content: space-around;
+    display: flex;
+    max-width: 1200px;
+}
+.contents {
+    width: 225px;
+    border-radius: 4px;
+    opacity: 80%;
+    border: solid 1px white;
+}
+.sidebar{ 
+    margin-right:10px;
+    padding: 5px;
+    border-radius: 4px;
+    opacity: 80%; 
+    border: solid 1px white;
+}
+.sidebar p{
+    font-size: 10px;
+}
